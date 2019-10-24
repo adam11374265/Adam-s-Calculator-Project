@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import verification.Verify;
 
 class Main
 {
@@ -19,7 +20,7 @@ class Main
       _userInput = _scanner.nextLine();
 
       // Print out result.
-      System.out.println("\nRESULT> " + _userInput + "\n");
+      System.out.println("\nRESULT> " + Verify.balancedParenthesis(_userInput) + "\n");
     }
   }
 }

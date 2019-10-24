@@ -1,3 +1,4 @@
+package verification;
 class Verify
 {
   // .*[].*
@@ -22,13 +23,15 @@ class Verify
       {
         p.push(a.charAt(i));
       }
-      if(a.charAt(i) == ')')
+      else if(a.charAt(i) == ')')
       {
-        if(p.top() == '(')
-        {
-
-        }
+        p.pop();
+      }
+      else
+      {
+        continue;
       }
     }
+
   }
 }
