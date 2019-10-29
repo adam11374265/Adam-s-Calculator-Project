@@ -19,8 +19,17 @@ class Main
       System.out.print("INPUT> ");
       _userInput = _scanner.nextLine();
 
-      // Print out result.
-      System.out.println("\nRESULT> " + Verify.balancedParenthesis(_userInput) + "\n");
+      // Checks for balanced parenthesis and invalid characters.
+      if(Verify.invalidChars(_userInput) == true || Verify.balancedParenthesis(_userInput) == true)
+      {
+        System.out.println("Invalid input. Re-enter input.");
+      }
+      else
+      {
+        System.out.println("\nRESULT> " + _userInput + "\n");
+      }
     }
+
+
   }
 }
