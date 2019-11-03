@@ -21,26 +21,30 @@ public class Verify
   }
   public static boolean balancedParenthesis(String a)
   {
-    // create stack for '('.
-    // Stack<Integer> stack = new Stack<Integer>();
-    Stack<Character> p = new Stack<Character>();
-    // Loop through the string.
+    // Create stack for '('.
+    Stack<Character> stack = new Stack<Character>();
+    
     for(int i = 0; i < a.length(); i++)
     {
       if(a.charAt(i) == '(')
       {
-        p.push(a.charAt(i));
+        stack.push(a.charAt(i));
       }
-      else if(a.charAt(i) == ')' && !p.empty())
+      else if(a.charAt(i) == ')' && stack.empty())
       {
-        p.pop();
+        return true;
+      }
+      else if(a.charAt(i) == ')' && !stack.empty())
+      {
+        stack.pop();
       }
       else
       {
-        return false;
-      }
+        continue;
+      } 
     }
-    if(p.empty())
+
+    if(stack.empty())
     {
       return false;
     }
