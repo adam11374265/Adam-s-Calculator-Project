@@ -8,15 +8,7 @@ public class Verify
   public static boolean invalidChars(String a)
   {
     // Checks if string contains invalid characters.
-    if(a.contains(".*[abcdefghij\"k\'lmnopqrstuvwxyzABCCEDGHIJKLMNOPQRSTUVWXYZ&$#@!~`\\\\|/?.>,<[\\]{\\}]=)].*"))
-    {
-      // Notifies if there are invalid characters.
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+    return a.contains(".*[abcdefghij\"k\'lmnopqrstuvwxyzABCCEDGHIJKLMNOPQRSTUVWXYZ&$#@!~`\\\\|/?.>,<[\\]{\\}]=)].*");
 
   }
   public static boolean balancedParenthesis(String a)
@@ -27,27 +19,24 @@ public class Verify
     // Loop through the string.
     for(int i = 0; i < a.length(); i++)
     {
+      // If scanned char is '(' then push scanned char to the stack.
       if(a.charAt(i) == '(')
       {
         p.push(a.charAt(i));
       }
+      // If scanned char is equal to ')', and the stack is not empty then take a char off the stack.
       else if(a.charAt(i) == ')' && !p.empty())
       {
         p.pop();
       }
-      else
+      else if(a.charAt(i) == ')' && p.empty())
       {
         return false;
       }
+
     }
-    if(p.empty())
-    {
-      return false;
-    }
-    else
-    {
-      return true;
-    }
+    // If the stack is empty then return false that the string is valid.
+    return p.empty();
 
   }
 }
