@@ -20,7 +20,7 @@ class Main
       _userInput = _scanner.nextLine();
 
       // Checks for balanced parenthesis and invalid characters.
-      if(Verify.invalidChars(_userInput) == true || Verify.balancedParenthesis(_userInput) == true)
+      if(Verify.invalidChars(_userInput) == true && Verify.balancedParenthesis(_userInput) == true)
       {
         System.out.println("Invalid input. Re-enter input.");
       }
