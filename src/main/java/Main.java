@@ -20,7 +20,11 @@ class Main
       _userInput = _scanner.nextLine();
 
       // Checks for balanced parenthesis and invalid characters.
+<<<<<<< HEAD
       if(Verify.checkValid(_userInput))
+=======
+      if(Verify.invalidChars(_userInput) == true && Verify.balancedParenthesis(_userInput) == true)
+>>>>>>> 0faeec1ab2141ddcf910b4b40a3bd55c36977901
       {
         System.out.println("Invalid expression. Re-enter expression.");
       }
