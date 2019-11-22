@@ -1,32 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 class evaluation
 {
-  public static String tokenizor(String a)
+  public static String[] tokenizor(String a)
     {
       a.replace(" ","");
-      if(a.matches("((?<=[+\\-*\\^\\/])\\-?[\\.\\d]+)|([\\.\\d]+)|([+\\-*\\/^\\(\\)])"))
-      {
-        return a.replace("", " "); 
-      }
-      else
-      {
-        return a;
-      }
+
+      // (?<=[+\\-*\\^\\/])\\-?[\\.\\d]+) | ([\\.\\d]+) | ([+\\-*\\/^\\(\\)])")
+
     }
 
-  public static int precedence(char a)
+  public static boolean precedence(char a, char b)
   {
-    switch(a)
-    {
-      case '+':
-      case '-':
-        return 1;
-      case '/':
-      case '*':
-        return 2;
-      case '^':
-        return 3;
-    }
-    return 0;
+    HashMap<String, Integer> map = new HashMap<>();
+    {{
+      map.put("+", 1);
+      map.put("-", 1);
+      map.put("*", 1);
+      map.put("/", 1);
+      map.put("^", 1);
+    }}
+    return map.get(a) < map.get(b);
+
+
   }
 
   public static String infixPostfixConverter(String a)
@@ -35,33 +33,34 @@ class evaluation
     Stack<Character> Operators = new Stack<>();
     for(int i = 0; i < a.length(); i++)
     {
-      if(charAt(i).matches("[\\d]"))
+
+      if(a.charAt(i).toString().equals("[\\d]"))
       {
-        answer = answer + charAt(i);
+        answer = answer + a.charAt(i);
       }
-      else if(charAt(i).matches("\*\+\-\/\^\(") && Operators.empty())
+      else if(a.charAt(i).toString().equals("\\*\\+\\-\\/\\^\\(") && Operators.empty())
       {
-        Operators.push(charAt(i));
+        Operators.push(a.charAt(i));
       }
-      else if(charAt(i).matches("\*\+\-\/\^") && precedence(charAt(i)) >= precedence(charAt(Operators.peek)))
+      else if(a.charAt(i).toString()a.equals("\\*\\+\\-\\/\\^") && precedence(a.charAt(i), Operators.peek()))
       {
-        Operators.push(charAt(i));
+        Operators.push(a.charAt(i));
       }
-      else if(charAt(i).matches("\*\+\-\/\^")  && precedence(charAt(i)) <= precedence(charAt(Operators.peek)))
+      else if(a.charAt(i).toString().equals("\\*\\+\\-\\/\\^")  && precedence(a.charAt(i), Operators.peek()))
       {
-        Operators.push(charAt(i));
-        while(precedence(charAt(i)) <= precedence(charAt(Operators.peek)) || !Operators.empty())
+        Operators.push(a.charAt(i));
+        while(precedence(a.charAt(i)), Operators.peek())) || !Operators.empty())
         {
           answer = answer + Operators.pop();
         }
       }
      else if(charAt(i) == ')')
      {
-      while(!charAt(i).equals('('))
+      while(!a.charAt(i).toString().equals('('))
       {
         answer = answer + Operators.pop();
       }
-       Operators.pop()
+       Operators.pop();
      }
     }
     if(!Operators.empty())

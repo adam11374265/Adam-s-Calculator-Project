@@ -37,7 +37,7 @@ public class Verify
       return !stack.empty();
 
   }
-
+  // (.*--+[\d].*)|(.*[\+\/\*\)\(\^].*)|(.*[\d].*)
   public static boolean invalidSyntax(String a)
   {
     return a.matches("(.*[\\d]+\\(.*)|(.*\\)[\\d].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[\\d]*\\..*)|(.*^0{2,}\\..*)|(.*\\(\\).*)");
