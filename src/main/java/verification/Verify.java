@@ -9,7 +9,7 @@ public class Verify
   {
     // Checks if string contains invalid characters.
 
-    return a.matches(".*[abcdefghij\"k\'lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&$#@!~`\\\\|/?>,<[\\]{\\}]=].*");
+    return Character.toString(string.charAt(string.length() - 1)).matches("[\\-\\+\\*\\/\\^]") && Character.toString(string.charAt(0).matches("[\\-\\+\\*\\/\\^]")) && a.matches(".*[abcdefghij\"k\'lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&$#@!~`\\\\|/?>,<[\\]{\\}]=].*");
 
   }
   public static boolean imbalancedParenthesis(String a)
