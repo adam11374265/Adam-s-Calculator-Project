@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import verification.Verify;
+import evaluation.Evaluate;
 
 class Main
 {
@@ -24,6 +25,10 @@ class Main
       if(Verify.checkValid(_userInput))
       {
         System.out.println("Invalid expression. Re-enter expression.");
+      }
+      else
+      {
+        System.out.print(evaluate.result(_userInput);)
       }
     }
 
