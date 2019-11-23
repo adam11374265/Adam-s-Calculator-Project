@@ -1,21 +1,19 @@
+package evaluation;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class evaluation
+public class Evaluate
 {
   public static String[] tokenizor(String a)
-    {
-      a.replace(" ","");
+  {
+    a.replace(" ","");
+    final Pattern pattern = Pattern.compile("((?<=[+-\\/\\^*])\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
+    final Matcher matcher = pattern.matcher(a);
+    final String[] result = matcher.replaceAll("$0 ").split("\\s");
 
-      // (?<=[+\\-*\\^\\/])\\-?[\\.\\d]+) | ([\\.\\d]+) | ([+\\-*\\/^\\(\\)])")
-      final Pattern pattern = Pattern.compile("((?<=[+-\\/\\^*])\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
-      final Matcher matcher = pattern.matcher(a);
-      final String[] result = matcher.replaceAll("$0 ").split("\\s");
-
-      return result;
-
-    }
+    return result;
+  }
 
   public static boolean precedence(String a, String b)
   {
@@ -29,8 +27,6 @@ class evaluation
       map.put("^", 3);
     }}
     return map.get(a) < map.get(b);
-
-
   }
 
   public static String infixPostfixConverter(String c)
@@ -71,9 +67,9 @@ class evaluation
         Operators.push(a[i]);
       }
       // If a ')' is scanned then, while a '(' is not scanned add the top of the stack to the answer.
-      else if(a[i].equals(')'))
+      else if(a[i].equals(")"))
       {
-        while(!a[i].equals('('))
+        while(!a[i].equals("("))
         {
           answer = answer + Operators.pop();
         }
