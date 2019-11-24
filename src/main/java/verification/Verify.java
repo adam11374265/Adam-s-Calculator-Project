@@ -2,6 +2,7 @@ package verification;
 import java.io.*;
 import java.util.*;
 
+
 public class Verify
 {
   // .*[].*
@@ -9,7 +10,7 @@ public class Verify
   {
     // Checks if string contains invalid characters.
 
-    return Character.toString(string.charAt(string.length() - 1)).matches("[\\-\\+\\*\\/\\^]") && Character.toString(string.charAt(0).matches("[\\-\\+\\*\\/\\^]")) && a.matches(".*[abcdefghij\"k\'lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&$#@!~`\\\\|/?>,<[\\]{\\}]=].*");
+    return Character.toString(a.charAt(a.length() - 1)).matches(".*[\\-\\+\\*\\/\\^].*") || Character.toString(a.charAt(0)).matches(".*[\\-\\+\\*\\/\\^].*") || a.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*");
 
   }
   public static boolean imbalancedParenthesis(String a)
