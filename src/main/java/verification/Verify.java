@@ -1,6 +1,7 @@
 package verification;
 import java.io.*;
 import java.util.*;
+import evaluation.Evaluate;
 
 
 public class Verify
@@ -10,7 +11,7 @@ public class Verify
   {
     // Checks if string contains invalid characters.
 
-    return Character.toString(a.charAt(a.length() - 1)).matches(".*[\\-\\+\\*\\/\\^].*") || Character.toString(a.charAt(0)).matches(".*[\\-\\+\\*\\/\\^].*") || a.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*");
+    return Character.toString(a.charAt(a.length() - 1)).matches(".*[\\-\\+\\*\\/\\^].*") || Character.toString(a.charAt(0)).matches(".*[\\+\\*\\/\\^].*") || a.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*");
 
   }
   public static boolean imbalancedParenthesis(String a)
@@ -46,6 +47,7 @@ public class Verify
 
   public static boolean checkValid(String a)
   {
+    
     return invalidSyntax(a) || invalidChars(a) || imbalancedParenthesis(a);
   }
 }
