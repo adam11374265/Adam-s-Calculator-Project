@@ -9,7 +9,7 @@ public class Evaluate
  public static String[] tokenizor(String a)
  {
    a.replace(" ","");
-   final Pattern pattern = Pattern.compile("((?<=[+-\\/\\^*])\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
+   final Pattern pattern = Pattern.compile("((?<!.)-?[\\d.]+)|((?<=[+-\\/\\^*])\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
    final Matcher matcher = pattern.matcher(a);
    final String[] result = matcher.replaceAll("$0 ").split("\\s");
  
