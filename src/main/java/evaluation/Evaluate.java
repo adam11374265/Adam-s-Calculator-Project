@@ -6,14 +6,38 @@ import evaluation.Evaluate;
  
 public class Evaluate
 {
- public static String[] tokenizor(String a)
- {
-   a.replace(" ","");
-   final Pattern pattern = Pattern.compile("((?<!.)-?[\\d.]+)|((?<=[+-\\/\\^*])\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
-   final Matcher matcher = pattern.matcher(a);
-   final String[] result = matcher.replaceAll("$0 ").split("\\s");
+  public static String operations(double a, double b, String c)
+  {
+    double d = 0;
+    switch(c)
+    {
+      case "+":
+        d = a + b;
+        break;
+      case "-":
+        d = a - b;
+        break;
+      case "*":
+        d = a * b;
+        break;
+      case "/":
+        d = a / b;
+        break;
+      case "^":
+        d = Math.pow(a, b);
+        break;
+    }
+    return String.valueOf(d);
+  }
+
+  public static String[] tokenizor(String a)
+  {
+    a.replace(" ","");
+    final Pattern pattern = Pattern.compile("((?<!.)-?[\\d.]+)|((?<=[+-\\/\\^*])\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
+    final Matcher matcher = pattern.matcher(a);
+    final String[] result = matcher.replaceAll("$0 ").split("\\s");
  
-   return result;
+    return result;
  }
  
  public static boolean greaterPrecedence(String a, String b)
