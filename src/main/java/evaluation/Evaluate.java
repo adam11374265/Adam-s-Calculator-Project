@@ -2,29 +2,53 @@ package evaluation;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import evaluation.Evaluate;
- 
+import java.util.Arrays;
+
 public class Evaluate
 {
+  
+  public static String calculate(String a)
+  {
+    String[] c = infixPostfixConverter(a).split("\\s");
+    Stack<String> operands = new Stack<>();
+    
+    
+    for(int i = 0; i < c.length; i++)
+    {
+      if(c[i].matches(".*[\\d].*"))
+      {
+        operands.push(c[i]);
+      }
+      else if(!operands.empty() && c[i].matches(".*[+\\-*\\^\\/].*"))
+      {
+        operands.push(operations(Double.parseDouble(operands.pop()), Double.parseDouble(operands.pop()), c[i]));
+      }
+    }
+  
+
+  return operands.toString().replace("[", "").replace("]", "");
+    
+  }
+
   public static String operations(double a, double b, String c)
   {
     double d = 0;
     switch(c)
     {
       case "+":
-        d = a + b;
+        d = b + a;
         break;
       case "-":
-        d = a - b;
+        d = b - a;
         break;
       case "*":
-        d = a * b;
+        d = b * a;
         break;
       case "/":
-        d = a / b;
+        d = b / a;
         break;
       case "^":
-        d = Math.pow(a, b);
+        d = Math.pow(b, a);
         break;
     }
     return String.valueOf(d);
@@ -92,7 +116,7 @@ public class Evaluate
      {
        while(!Operators.peek().equals("("))
       {
-        result = result + " " + Operators.pop();
+        result = result + Operators.pop() + " ";
       }
       Operators.pop();
      }
@@ -100,7 +124,7 @@ public class Evaluate
  
    while(!Operators.empty())
    {
-     result = result + " " + Operators.pop();
+     result = result + Operators.pop() + " ";
    }
 
    return result;
