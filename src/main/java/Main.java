@@ -28,7 +28,7 @@ class Main
       }
       else
       {
-        System.out.println("OUTPUT> " + Evaluate.infixPostfixConverter(_userInput));
+        System.out.println("OUTPUT> " + Evaluate.calculate(_userInput));
       }
       
     }
